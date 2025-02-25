@@ -1,1 +1,52 @@
-/PRJ302_Assigment/nbproject/private/
+### Ignore compiled class files
+*.class
+
+### Ignore package files
+*.jar
+*.war
+*.ear
+
+### Ignore Apache Tomcat specific files
+/.tomcat/
+/work/
+/logs/
+/temp/
+/conf/Catalina/
+
+### Ignore IDE specific files
+/.idea/
+*.iml
+*.ipr
+*.iws
+
+### Ignore Eclipse specific files
+/.classpath
+/.project
+/.settings/
+
+### Ignore NetBeans specific files
+/nbproject/
+/build/
+
+### Ignore temporary files
+*.log
+*.tmp
+
+### Ignore environment files
+.env
+
+### Ignore deployment files
+/.vscode/
+/.DS_Store
+Thumbs.db
+
+### Ignore Windows/macOS specific files
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS specific
+.DS_Store
+.AppleDouble
+.LSOverride
