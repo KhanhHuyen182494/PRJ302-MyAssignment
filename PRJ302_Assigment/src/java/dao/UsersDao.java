@@ -31,7 +31,7 @@ public class UsersDao extends DBContext {
             ps.setString(2, password);
             rs = ps.executeQuery();
             if (rs.next()) {
-                  return new Users(rs.getString(2), rs.getString(3),
+                return new Users(rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getString(5), rs.getString(6),
                         rs.getString(7), rs.getInt(8), rs.getInt(9), rs.getInt(10));
             }
@@ -42,7 +42,7 @@ public class UsersDao extends DBContext {
         }
         return null;
     }
-    
+
     public List<Users> getAll() {
         String query = "SELECT *\n"
                 + "  FROM [PRJ302].[dbo].[Users]\n";
@@ -79,15 +79,15 @@ public class UsersDao extends DBContext {
                 + "     VALUES\n"
                 + "           (?\n"
                 + "            ,?\n"
-                + "           ,?>\n"
-                + "           ,?>\n"
-                + "           ,?>\n"
-                + "           ,?>\n"
-                + "           ,?>\n"
-                + "           ,?>\n"
-                + "           ,?>\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?\n"
                 + "           ,?)";
-         try {
+        try {
             ps = connection.prepareStatement(query);
             ps.setString(1, users.getUserName());
             ps.setString(2, users.getPassword());
