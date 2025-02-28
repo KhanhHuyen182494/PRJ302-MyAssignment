@@ -8,6 +8,7 @@ import dao.UsersDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -57,8 +58,29 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+           Cookie[] cookies = request.getCookies();
+        for (Cookie cooky : cookies) {
+            System.out.println(cooky.getName() + " " + cooky.getValue());
+        }
+        if (cookies != null) {
+            
+            for (Cookie cooki : cookies) {
+                if (cooki.getName().equals("rememberC")) {
+                    
+                    request.setAttribute("remember", cooki.getValue());
+                } else if (cooki.getName().equals("userC")) {
+                    
+                    request.setAttribute("user", cooki.getValue());
+                } else if (cooki.getName().equals("passC")) {
+                   
+                    request.setAttribute("pass", cooki.getValue());
+                }
+            }
+        }
         request.getRequestDispatcher("root/authen/login.jsp").forward(request, response);
-    }
+    }      
+            
+     
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -72,27 +94,45 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userName = request.getParameter("user");
+
         String password = request.getParameter("password");
+
+        String remember = request.getParameter("rememberMe");
+
         UsersDao usersDao = new UsersDao();
         Users user = usersDao.getUserByUserNameAndPassword(userName, password);
         if (user != null) {
+            if (remember != null) {
+               
+                Cookie remember_cookie = new Cookie("rememberC", remember);
+                Cookie user_cookie = new Cookie("userC", userName);
+                Cookie pass_cookie = new Cookie("passC", password);
+
+                remember_cookie.setMaxAge(60 * 60 * 24 * 7);
+                user_cookie.setMaxAge(60 * 60 * 24 * 7);
+                pass_cookie.setMaxAge(60 * 60 * 24 * 7);
+
+                response.addCookie(remember_cookie);
+                response.addCookie(user_cookie);
+                response.addCookie(pass_cookie);
+            }
+
             int role = user.getRoleId();
             request.setAttribute("name", user.getName());
             switch (role) {
-                case 1:
+                case 1 ->
                     request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
-                    break;
-                case 2:
-                     request.getRequestDispatcher("root/display/management/home.jsp").forward(request, response);
-                    break;
-                case 3:
-                     request.getRequestDispatcher("root/display/director/home.jsp").forward(request, response);
-                    break;
+                case 2 -> {
+                    request.getRequestDispatcher("root/display/management/home.jsp").forward(request, response);
+
+                }
+                case 3 -> {
+                    request.getRequestDispatcher("root/display/director/home.jsp").forward(request, response);
+                }
             }
         } else {
             request.setAttribute("ErrorLogin", "User or Password is not correct");
             request.getRequestDispatcher("root/authen/login.jsp").forward(request, response);
-
         }
     }
 
