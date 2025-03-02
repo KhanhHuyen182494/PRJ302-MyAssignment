@@ -4,15 +4,8 @@
     Author     : admin
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="createRequest">Leave System</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -20,7 +13,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-               
+
                 <li class="nav-item"><a class="nav-link" href="historyRequest">History request</a></li>
                 <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="changePassaword">Change Password</a></li>
@@ -29,5 +22,4 @@
         </div>
     </div>
 </nav>
-    </body>
-</html>
+

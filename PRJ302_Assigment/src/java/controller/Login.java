@@ -58,29 +58,27 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           Cookie[] cookies = request.getCookies();
+        Cookie[] cookies = request.getCookies();
         for (Cookie cooky : cookies) {
             System.out.println(cooky.getName() + " " + cooky.getValue());
         }
         if (cookies != null) {
-            
+
             for (Cookie cooki : cookies) {
                 if (cooki.getName().equals("rememberC")) {
-                    
+
                     request.setAttribute("remember", cooki.getValue());
                 } else if (cooki.getName().equals("userC")) {
-                    
+
                     request.setAttribute("user", cooki.getValue());
                 } else if (cooki.getName().equals("passC")) {
-                   
+
                     request.setAttribute("pass", cooki.getValue());
                 }
             }
         }
         request.getRequestDispatcher("root/authen/login.jsp").forward(request, response);
-    }      
-            
-     
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -103,7 +101,7 @@ public class Login extends HttpServlet {
         Users user = usersDao.getUserByUserNameAndPassword(userName, password);
         if (user != null) {
             if (remember != null) {
-               
+
                 Cookie remember_cookie = new Cookie("rememberC", remember);
                 Cookie user_cookie = new Cookie("userC", userName);
                 Cookie pass_cookie = new Cookie("passC", password);
