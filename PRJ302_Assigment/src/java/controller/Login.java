@@ -97,7 +97,7 @@ public class Login extends HttpServlet {
 
         String remember = request.getParameter("rememberMe");
 
-        UsersDao usersDao = new UsersDao();
+        UsersDao usersDao = new UsersDao();// check acc
         Users user = usersDao.getUserByUserNameAndPassword(userName, password);
         if (user != null) {
             if (remember != null) {
