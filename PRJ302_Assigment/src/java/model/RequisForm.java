@@ -23,22 +23,13 @@ public class RequisForm {
     public RequisForm() {
     }
 
-    public RequisForm(int formId, Date dateStart, Date dateEnd, String issue, int status, int userIdCreateForm, int userIdAcceptForm) {
-        this.formId = formId;
+    public RequisForm(Date dateStart, Date dateEnd, String issue, int status, int userIdCreateForm, int userIdAcceptForm) {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.issue = issue;
         this.status = status;
         this.userIdCreateForm = userIdCreateForm;
         this.userIdAcceptForm = userIdAcceptForm;
-    }
-
-    public int getFormId() {
-        return formId;
-    }
-
-    public void setFormId(int formId) {
-        this.formId = formId;
     }
 
     public Date getDateStart() {
@@ -91,8 +82,9 @@ public class RequisForm {
 
     @Override
     public String toString() {
-        return "RequisForm{" + "formId=" + formId + ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", issue=" + issue + ", status=" + status + ", userIdCreateForm=" + userIdCreateForm + ", userIdAcceptForm=" + userIdAcceptForm + '}';
+        return "RequisForm{" + "dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", issue=" + issue + ", status=" + status + ", userIdCreateForm=" + userIdCreateForm + ", userIdAcceptForm=" + userIdAcceptForm + '}';
     }
 
+   
     
 }

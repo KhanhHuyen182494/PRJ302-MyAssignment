@@ -10,11 +10,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Users;
 
 /**
  *
@@ -39,7 +41,7 @@ public class CreateRequest extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateRequest</title>");            
+            out.println("<title>Servlet CreateRequest</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CreateRequest at " + request.getContextPath() + "</h1>");
@@ -74,11 +76,29 @@ public class CreateRequest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
+
             Date dateStart = dateFormat.parse(request.getParameter("dateStart"));
+            Date dateEnd = dateFormat.parse(request.getParameter("dateEnd"));
+
+            if (dateStart.after(dateEnd)) {
+                request.setAttribute("ErrDate", "Date start must before date end");
+                request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
+            } else {
+                String issue = request.getParameter("issue");
+                HttpSession session = request.getSession();
+                Users user = (Users) (session.getAttribute("user"));
+                RequisFormDAO formDAO = new RequisFormDAO();
+                
+                 
+                formDAO.inserForm(dateStart, dateEnd, issue, 0, user.getUserId(), user.getManagerId());
+                request.setAttribute("CreateForm", "create form success");
+                request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
+
+            }
         } catch (ParseException ex) {
-            Logger.getLogger(CreateRequest.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
 
