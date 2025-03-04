@@ -21,7 +21,7 @@ public class Users {
     private int roleId;
     private Integer managerId;
 
-    public Users() {
+    public Users(String string, String string1, String string2, String string3, String string4, String string5, int aInt, int aInt1, int aInt2) {
     }
 
     public Users(int userId, String userName, String password, String name, String phone, String address, String email, int divisionId, int roleId, Integer managerId) {
