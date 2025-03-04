@@ -44,14 +44,14 @@
         <div class="container mt-4">
             <section id="createRequest">
                 <h2>Tạo Đơn Nghỉ Phép</h2>
-                <form>
+                <form action="createRequest" method="post">
                     <div class="mb-3">
                         <label class="form-label">Ngày Bắt Đầu</label>
-                        <input type="date" class="form-control">
+                        <input type="date" class="form-control" name="dateStart" required="">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Ngày Kết Thúc</label>
-                        <input type="date" class="form-control">
+                        <input type="date" class="form-control" name="dateEnd" required="">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Lý Do</label>

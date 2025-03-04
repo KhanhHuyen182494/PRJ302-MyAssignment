@@ -12,6 +12,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Users;
 
 /**
@@ -99,6 +100,9 @@ public class Login extends HttpServlet {
 
         UsersDao usersDao = new UsersDao();// check acc
         Users user = usersDao.getUserByUserNameAndPassword(userName, password);
+        
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
         if (user != null) {
             if (remember != null) {
 
