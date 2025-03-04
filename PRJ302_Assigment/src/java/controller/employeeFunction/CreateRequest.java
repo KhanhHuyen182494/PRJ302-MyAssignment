@@ -10,6 +10,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -69,7 +74,12 @@ public class CreateRequest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date dateStart = dateFormat.parse(request.getParameter("dateStart"));
+        } catch (ParseException ex) {
+            Logger.getLogger(CreateRequest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
