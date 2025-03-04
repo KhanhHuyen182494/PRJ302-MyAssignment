@@ -76,27 +76,55 @@
                 </form>
             </section>
 
-            <section id="history" class="section-container">
-                <h2 class="text-success">Lịch Sử Đơn</h2>
-                <table class="table table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Ngày Bắt Đầu</th>
-                            <th>Ngày Kết Thúc</th>
-                            <th>Lý Do</th>
-                            <th>Trạng Thái</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2025-03-10</td>
-                            <td>2025-03-12</td>
-                            <td>Nghỉ ốm</td>
-                            <td class="text-success">Đã duyệt</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            <div class="container mt-4">
+                <section id="history" class="section-container">
+                    <h2 class="text-success">Lịch Sử Đơn</h2>
+                    <table class="table table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Ngày Bắt Đầu</th>
+                                <th>Ngày Kết Thúc</th>
+                                <th>Lý Do</th>
+                                <th>Trạng Thái</th>
+                                <th>Xem Chi Tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025-03-10</td>
+                                <td>2025-03-12</td>
+                                <td>Nghỉ ốm</td>
+                                <td class="text-success">Đã duyệt</td>
+                                <td>
+                                    <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal" 
+                                            onclick="showDetail('2025-03-10', '2025-03-12', 'Nghỉ ốm', 'Đã duyệt')">Xem</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="detailModalLabel">Chi Tiết Đơn Nghỉ</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p><strong>Ngày Bắt Đầu:</strong> <span id="startDate"></span></p>
+                            <p><strong>Ngày Kết Thúc:</strong> <span id="endDate"></span></p>
+                            <p><strong>Lý Do:</strong> <span id="reason"></span></p>
+                            <p><strong>Trạng Thái:</strong> <span id="status"></span></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <section id="profile" class="section-container">
                 <h2 class="text-info">Thông Tin Cá Nhân</h2>
@@ -209,8 +237,15 @@
                 </table>
             </section>
         </div>
-        
-        
+
+        <script>
+            function showDetail(start, end, reason, status) {
+                document.getElementById("startDate").innerText = start;
+                document.getElementById("endDate").innerText = end;
+                document.getElementById("reason").innerText = reason;
+                document.getElementById("status").innerText = status;
+            }
+        </script>
 
         <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
