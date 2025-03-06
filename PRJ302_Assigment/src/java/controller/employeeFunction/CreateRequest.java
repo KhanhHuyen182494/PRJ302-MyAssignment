@@ -4,6 +4,7 @@
  */
 package controller.employeeFunction;
 
+import dao.RequisFormDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -62,7 +63,7 @@ public class CreateRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
     }
 
     /**
@@ -92,8 +93,8 @@ public class CreateRequest extends HttpServlet {
                 RequisFormDAO formDAO = new RequisFormDAO();
                 
                  
-                formDAO.inserForm(dateStart, dateEnd, issue, 0, user.getUserId(), user.getManagerId());
-                request.setAttribute("CreateForm", "create form success");
+                formDAO.inserForm(dateStart, dateEnd, issue, 0, user.getIdUser(), user.getManagerId());
+                request.setAttribute("CreateForm", "Create form success!");
                 request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
 
             }
@@ -103,7 +104,7 @@ public class CreateRequest extends HttpServlet {
     }
 
     /**
-     * Returns a short description of the servlet.
+     * Returns a short description of the servlet.SS
      *
      * @return a String containing servlet description
      */
