@@ -8,9 +8,8 @@ package model;
  *
  * @author admin
  */
-public class Users {
-
-  
+public class UserModel {
+    
     private Integer idUser;
     private String userName;
     private String password;
@@ -19,13 +18,16 @@ public class Users {
     private String address;
     private String email;
     private int divisionId;
+    private String divisionName;
     private int roleId;
-    private Integer managerId;
 
-    public Users(String string, String string1, String string2, String string3, String string4, String string5, int aInt, int aInt1, int aInt2) {
+    private Integer managerId;
+    private String managerName;
+
+    public UserModel() {
     }
 
-    public Users(Integer idUser, String userName, String password, String name, String phone, String address, String email, int divisionId, int roleId, Integer managerId) {
+    public UserModel(Integer idUser, String userName, String password, String name, String phone, String address, String email, int divisionId, String divisionName, int roleId, Integer managerId, String managerName) {
         this.idUser = idUser;
         this.userName = userName;
         this.password = password;
@@ -34,8 +36,10 @@ public class Users {
         this.address = address;
         this.email = email;
         this.divisionId = divisionId;
+        this.divisionName = divisionName;
         this.roleId = roleId;
         this.managerId = managerId;
+        this.managerName = managerName;
     }
 
     public Integer getIdUser() {
@@ -102,6 +106,14 @@ public class Users {
         this.divisionId = divisionId;
     }
 
+    public String getDivisionName() {
+        return divisionName;
+    }
+
+    public void setDivisionName(String divisionName) {
+        this.divisionName = divisionName;
+    }
+
     public int getRoleId() {
         return roleId;
     }
@@ -118,11 +130,18 @@ public class Users {
         this.managerId = managerId;
     }
 
-    @Override
-    public String toString() {
-        return "Users{" + "idUser=" + idUser + ", userName=" + userName + ", password=" + password + ", name=" + name + ", phone=" + phone + ", address=" + address + ", email=" + email + ", divisionId=" + divisionId + ", roleId=" + roleId + ", managerId=" + managerId + '}';
+    public String getManagerName() {
+        return managerName;
     }
 
-  
-   
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
+    }
+
+    @Override
+    public String toString() {
+        return "UserModel{" + "idUser=" + idUser + ", userName=" + userName + ", password=" + password + ", name=" + name + ", phone=" + phone + ", address=" + address + ", email=" + email + ", divisionId=" + divisionId + ", divisionName=" + divisionName + ", roleId=" + roleId + ", managerId=" + managerId + ", managerName=" + managerName + '}';
+    }
+    
+    
 }
