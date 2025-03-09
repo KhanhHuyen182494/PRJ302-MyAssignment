@@ -6,35 +6,45 @@ import java.util.Date;
 
 public class RequisFormDAO extends DBContext {
 
-    public void inserForm(Date dateStart, Date dateEnd, String issue, int status, int idUserCreateForm, Integer idUserProcessForm) {
-        String query = "INSERT INTO [dbo].[Requis_form] ([date_start], [date_end], [issue], [status], [user_id_create_form], [user_id_accept_form]) VALUES (?, ?, ?, ?, ?, ?)";
-        
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
-            if (connection == null) {
-                throw new SQLException("Database connection is null!");
-            }
-            
+    PreparedStatement ps = null; //=> preparedStament => de thuc thi thi du lieu
+    ResultSet rs = null; //=> ket qua de hung lay du lieu
+
+    public boolean inserForm(Date dateStart, Date dateEnd, String issue, int status, int idUserCreateForm, Integer idUserProcessForm) {
+        String query = "INSERT INTO [dbo].[Requis_form]\n"
+                + "           ([date_start]\n"
+                + "           ,[date_end]\n"
+                + "           ,[issue]\n"
+                + "           ,[status]\n"
+                + "           ,[user_id_create_form]\n"
+                + "           ,[user_id_accept_form])\n"
+                + "     VALUES\n"
+                + "           (?\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?\n"
+                + "           ,?)";
+        try {
+            ps = connection.prepareStatement(query);
             ps.setDate(1, new java.sql.Date(dateStart.getTime()));
+            
             ps.setDate(2, new java.sql.Date(dateEnd.getTime()));
+            
             ps.setString(3, issue);
+            
             ps.setInt(4, status);
+            
             ps.setInt(5, idUserCreateForm);
+             
+            ps.setInt(6, idUserProcessForm);
             
-            // Xử lý nếu idUserProcessForm có thể là null
-            if (idUserProcessForm != null) {
-                ps.setInt(6, idUserProcessForm);
-            } else {
-                ps.setNull(6, Types.INTEGER);
-            }
-            
-            int rowsInserted = ps.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("Insert successful!");
-            } else {
-                System.out.println("Insert failed, no rows affected.");
-            }
+            ps.executeUpdate();
+            return true;
         } catch (SQLException ex) {
-            ex.printStackTrace(); // In chi tiết lỗi SQL
+            ex.printStackTrace();
+            return false;
         }
+        
     }
+
 }

@@ -55,7 +55,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Lý Do</label>
-                            <textarea class="form-control" rows="3" required=""></textarea>
+                            <textarea class="form-control" name="issue" rows="3" required=""></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Gửi Đơn</button>
                     </form>

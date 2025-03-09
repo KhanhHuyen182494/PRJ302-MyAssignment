@@ -23,7 +23,7 @@ public class RequisForm {
     public RequisForm() {
     }
 
-    public RequisForm(Date dateStart, Date dateEnd, String issue, int status, int userIdCreateForm, int userIdAcceptForm) {
+    public RequisForm(int status, Date dateStart, Date dateEnd, String issue, int userIdCreateForm, int userIdAcceptForm, int aInt3) {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.issue = issue;
@@ -82,8 +82,10 @@ public class RequisForm {
 
     @Override
     public String toString() {
-        return "RequisForm{" + "dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", issue=" + issue + ", status=" + status + ", userIdCreateForm=" + userIdCreateForm + ", userIdAcceptForm=" + userIdAcceptForm + '}';
+        return "RequisForm{" + "formId=" + formId + ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", issue=" + issue + ", status=" + status + ", userIdCreateForm=" + userIdCreateForm + ", userIdAcceptForm=" + userIdAcceptForm + '}';
     }
+
+   
 
    
     

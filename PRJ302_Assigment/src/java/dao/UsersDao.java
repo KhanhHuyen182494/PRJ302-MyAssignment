@@ -21,7 +21,7 @@ public class UsersDao extends DBContext {
     PreparedStatement ps = null; //=> preparedStament => de thuc thi thi du lieu
     ResultSet rs = null; //=> ket qua de hung lay du lieu
 
-      public Users getUserByUserNameAndPassword(String userName, String password) {
+    public Users getUserByUserNameAndPassword(String userName, String password) {
         String query = "SELECT *\n"
                 + "  FROM [PRJ302].[dbo].[Users]\n"
                 + " WHERE Users.user_name = ? and Users.password = ?";
@@ -87,8 +87,8 @@ public class UsersDao extends DBContext {
                 + "           ,[role_id]\n"
                 + "           ,[manager_id])\n"
                 + "     VALUES\n"
-                + "           (?,"
-                + "?\n"
+                + "           (?\n"
+                + "           ,?\n"
                 + "           ,?\n"
                 + "           ,?\n"
                 + "           ,?\n"
@@ -113,5 +113,4 @@ public class UsersDao extends DBContext {
         }
     }
 
-    
 }

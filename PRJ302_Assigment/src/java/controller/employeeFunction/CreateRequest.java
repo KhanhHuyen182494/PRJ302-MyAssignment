@@ -92,16 +92,13 @@ public class CreateRequest extends HttpServlet {
                 HttpSession session = request.getSession();
                 Users user = (Users) (session.getAttribute("user"));
                 RequisFormDAO formDAO = new RequisFormDAO();
-                RequisForm requestFom = new RequisForm();
-                requestFom.setDateStart(dateStart);
-                requestFom.setDateEnd(dateEnd);
-                requestFom.setIssue(issue);
-                requestFom.setStatus(0);
-                requestFom.setUserIdAcceptForm(user.getIdUser());
-                requestFom.setUserIdCreateForm(user.getManagerId());
+
+                if(formDAO.inserForm(dateStart, dateEnd, issue, 0, user.getIdUser(), user.getManagerId()) == true){
+                    request.setAttribute("CreateForm", "Create form success!");
+                }else{
+                     request.setAttribute("CreateForm", "NOT Create form success!");
+                }
                 
-                formDAO.inserForm(dateStart, dateEnd, issue, 0, user.getIdUser(), user.getManagerId());
-                request.setAttribute("CreateForm", "Create form success!");
                 request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
 
             }
