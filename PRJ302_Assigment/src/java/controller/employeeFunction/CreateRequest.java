@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.RequisForm;
 import model.Users;
 
 /**
@@ -91,8 +92,14 @@ public class CreateRequest extends HttpServlet {
                 HttpSession session = request.getSession();
                 Users user = (Users) (session.getAttribute("user"));
                 RequisFormDAO formDAO = new RequisFormDAO();
+                RequisForm requestFom = new RequisForm();
+                requestFom.setDateStart(dateStart);
+                requestFom.setDateEnd(dateEnd);
+                requestFom.setIssue(issue);
+                requestFom.setStatus(0);
+                requestFom.setUserIdAcceptForm(user.getIdUser());
+                requestFom.setUserIdCreateForm(user.getManagerId());
                 
-                 
                 formDAO.inserForm(dateStart, dateEnd, issue, 0, user.getIdUser(), user.getManagerId());
                 request.setAttribute("CreateForm", "Create form success!");
                 request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
@@ -100,7 +107,7 @@ public class CreateRequest extends HttpServlet {
             }
         } catch (ParseException ex) {
             System.out.println(ex);
-        }
+        } 
     }
 
     /**
