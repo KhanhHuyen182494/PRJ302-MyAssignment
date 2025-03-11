@@ -61,9 +61,9 @@ public class HistoryRequest extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Users users = (Users) (session.getAttribute("user"));
+        Users user = (Users) (session.getAttribute("user"));
         RequisFormDAO formDAO = new RequisFormDAO();
-        List<RequisForm> listForm = formDAO.getAllFormByIdUser(users.getIdUser());
+        List<RequisForm> listForm = formDAO.getAllFormByIdUser(user.getIdUser());
         if (listForm.isEmpty()) {
             request.setAttribute("EmptyHistory", "Không có lịch sử đơn");
         } else {

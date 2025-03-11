@@ -39,7 +39,7 @@ public class Register extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Register</title>");            
+            out.println("<title>Servlet Register</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
@@ -86,6 +86,14 @@ public class Register extends HttpServlet {
         int divisionId = Integer.parseInt(request.getParameter("division"));
         int role_id = Integer.parseInt(request.getParameter("role_id"));
         int management_id = 0;
+        UsersDao usersDao = new UsersDao();// goi ra de dang ki di
+        
+        if (usersDao.isUsernameOrEmailExists(username, email)) { // xu ly duplicated
+        // If exists, set error message and forward to register page
+        request.setAttribute("errorMessage", "Username or email already exists.");
+        request.getRequestDispatcher("root/authen/register.jsp").forward(request, response);
+        return;
+    }
         
         switch (divisionId) {
             case 1:
@@ -98,10 +106,8 @@ public class Register extends HttpServlet {
                 management_id = 3;
                 break;
         }
-  
-        
+
         Users users = new Users(username, password, name, phone, address, email, divisionId, role_id, management_id);
-        UsersDao usersDao = new UsersDao();// goi ra de dang ki di
         usersDao.insertUser(users);
         request.getRequestDispatcher("root/authen/login.jsp").forward(request, response);
     }

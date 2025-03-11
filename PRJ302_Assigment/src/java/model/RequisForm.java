@@ -20,16 +20,36 @@ public class RequisForm {
     private int userIdCreateForm;
     private int userIdAcceptForm;
 
+    // Constructors
     public RequisForm() {
     }
 
-    public RequisForm(int status, Date dateStart, Date dateEnd, String issue, int userIdCreateForm, int userIdAcceptForm, int aInt3) {
+    public RequisForm(Date dateStart, Date dateEnd, String issue, int status, int userIdCreateForm, int userIdAcceptForm) {
+
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.issue = issue;
         this.status = status;
         this.userIdCreateForm = userIdCreateForm;
         this.userIdAcceptForm = userIdAcceptForm;
+    }
+
+    public RequisForm(int formId, Date dateStart, Date dateEnd, String issue, int status, int userIdCreateForm, int userIdAcceptForm) {
+        this.formId = formId;
+        this.dateStart = dateStart;
+        this.dateEnd = dateEnd;
+        this.issue = issue;
+        this.status = status;
+        this.userIdCreateForm = userIdCreateForm;
+        this.userIdAcceptForm = userIdAcceptForm;
+    }
+
+    public int getFormId() {
+        return formId;
+    }
+
+    public void setFormId(int formId) {
+        this.formId = formId;
     }
 
     public Date getDateStart() {
@@ -84,9 +104,6 @@ public class RequisForm {
     public String toString() {
         return "RequisForm{" + "formId=" + formId + ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", issue=" + issue + ", status=" + status + ", userIdCreateForm=" + userIdCreateForm + ", userIdAcceptForm=" + userIdAcceptForm + '}';
     }
-
-   
-
-   
     
+
 }

@@ -4,12 +4,20 @@
  */
 package controller.employeeFunction;
 
+import dao.DivisionDAO;
+import dao.RequisFormDAO;
+import dao.UsersDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.Division;
+import model.UserModel;
+import model.Users;
 
 /**
  *
@@ -34,7 +42,7 @@ public class Profile extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Profile</title>");            
+            out.println("<title>Servlet Profile</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Profile at " + request.getContextPath() + "</h1>");
@@ -55,7 +63,17 @@ public class Profile extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Users user = (Users) (session.getAttribute("user"));
+        UsersDao usersDao = new UsersDao();
+        UserModel userModel = usersDao.getInformationUser(user.getIdUser());
+        DivisionDAO dAO = new DivisionDAO();
+        List<Division> divisions = dAO.getAllDivision();
+        
+        request.setAttribute("listDivision", divisions);
+        request.setAttribute("userI", userModel); // I trong information
+        request.getRequestDispatcher("root/display/employee/profile.jsp").forward(request, response);
+
     }
 
     /**
