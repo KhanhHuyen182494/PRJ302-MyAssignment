@@ -4,12 +4,17 @@
  */
 package controller.employeeFunction;
 
+import dao.RequisFormDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.RequisForm;
+import model.Users;
 
 /**
  *
@@ -34,7 +39,7 @@ public class HistoryRequest extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HistoryRequest</title>");            
+            out.println("<title>Servlet HistoryRequest</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet HistoryRequest at " + request.getContextPath() + "</h1>");
@@ -55,7 +60,16 @@ public class HistoryRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Users users = (Users) (session.getAttribute("user"));
+        RequisFormDAO formDAO = new RequisFormDAO();
+        List<RequisForm> listForm = formDAO.getAllFormByIdUser(users.getIdUser());
+        if (listForm.isEmpty()) {
+            request.setAttribute("EmptyHistory", "Không có lịch sử đơn");
+        } else {
+            request.setAttribute("listForm", listForm);
+        }
+        request.getRequestDispatcher("/root/display/employee/history.jsp").forward(request, response);
     }
 
     /**

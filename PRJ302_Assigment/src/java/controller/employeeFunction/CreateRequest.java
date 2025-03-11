@@ -93,7 +93,7 @@ public class CreateRequest extends HttpServlet {
                 Users user = (Users) (session.getAttribute("user"));
                 RequisFormDAO formDAO = new RequisFormDAO();
 
-                if(formDAO.inserForm(dateStart, dateEnd, issue, 0, user.getIdUser(), user.getManagerId()) == true){
+                if(formDAO.insertForm(dateStart, dateEnd, issue, 0, user.getIdUser(), user.getManagerId()) == true){
                     request.setAttribute("CreateForm", "Create form success!");
                 }else{
                      request.setAttribute("CreateForm", "NOT Create form success!");

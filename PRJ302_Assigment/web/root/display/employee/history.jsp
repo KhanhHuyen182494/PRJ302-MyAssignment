@@ -4,6 +4,7 @@
     Author     : admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -41,27 +42,41 @@
     <body>
 
         <jsp:include page="/root/display/employee/header.jsp"></jsp:include>
-        <div class="container mt-4">
+            <div class="container mt-4">
 
 
-            <section id="history" class="mt-4">
-                <h2>Lịch Sử Đơn</h2>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Ngày Bắt Đầu</th>
-                            <th>Ngày Kết Thúc</th>
-                            <th>Lý Do</th>
-                            <th>Trạng Thái</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2025-03-10</td>
-                            <td>2025-03-12</td>
-                            <td>Nghỉ ốm</td>
-                            <td class="text-success">Đã duyệt</td>
-                        </tr>
+                <section id="history" class="mt-4">
+                    <h2>Lịch Sử Đơn</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Ngày Bắt Đầu</th>
+                                <th>Ngày Kết Thúc</th>
+                                <th>Lý Do</th>
+                                <th>Trạng Thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${listForm}" var="i">
+                            <tr>
+                                <td>${i.dateStart}</td>
+                                <td>${i.dateEnd}</td>
+                                <td>${i.issue}</td>
+                                    <c:if test="${i.status == 1}">
+                                    <td class="text-success">Đã duyệt</td> 
+                                </c:if>
+                                
+                                    <c:if test="${i.status == -1}">
+                                    <td class="text-danger">Từ chối</td> 
+                                </c:if>
+                                
+                                    <c:if test="${i.status == -1}">
+                                    <td class="text-warning">Đang xử lý</td> 
+                                </c:if>
+
+                            </tr>
+                        </c:forEach>
+
                     </tbody>
                 </table>
             </section>
