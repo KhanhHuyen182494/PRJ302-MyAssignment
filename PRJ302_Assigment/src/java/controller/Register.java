@@ -85,7 +85,7 @@ public class Register extends HttpServlet {
         String email = request.getParameter("email");
         int divisionId = Integer.parseInt(request.getParameter("division"));
         int role_id = Integer.parseInt(request.getParameter("role_id"));
-        int management_id = 0;
+        
         UsersDao usersDao = new UsersDao();// goi ra de dang ki di
         
         if (usersDao.isUsernameOrEmailExists(username, email)) { // xu ly duplicated
@@ -94,7 +94,7 @@ public class Register extends HttpServlet {
         request.getRequestDispatcher("root/authen/register.jsp").forward(request, response);
         return;
     }
-        
+        int management_id = 0;
         switch (divisionId) {
             case 1:
                 management_id = 4;

@@ -87,7 +87,22 @@ public class Profile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Users user = (Users) (session.getAttribute("user"));
+        UsersDao usersDao = new UsersDao();
+        String name = request.getParameter("Name");
+        String phone = request.getParameter("Phone");
+        String address = request.getParameter("Adress");
+        String email = request.getParameter("Email");
+        int divisionId = Integer.parseInt(request.getParameter("divisionId"));
+         int management_id = 0;
+         management_id = switch (divisionId) {
+            case 1 -> 4;
+            case 2 -> 2;
+            default -> 3;
+        };
+        usersDao.updateProfileByUserId(user.getIdUser(), name, phone, address, email, divisionId, management_id);
+        response.sendRedirect("createRequest");
     }
 
     /**

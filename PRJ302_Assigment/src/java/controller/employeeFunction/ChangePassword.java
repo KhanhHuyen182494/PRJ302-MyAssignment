@@ -4,12 +4,15 @@
  */
 package controller.employeeFunction;
 
+import dao.UsersDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Users;
 
 /**
  *
@@ -34,7 +37,7 @@ public class ChangePassword extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangePassword</title>");            
+            out.println("<title>Servlet ChangePassword</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ChangePassword at " + request.getContextPath() + "</h1>");
@@ -55,7 +58,7 @@ public class ChangePassword extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("/root/display/employee/changePassword.jsp").forward(request, response);
     }
 
     /**
@@ -69,7 +72,28 @@ public class ChangePassword extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        Users user = (Users) (session.getAttribute("user"));
+        UsersDao dao = new UsersDao();
+        String oldPass = request.getParameter("oldPassword");
+        String err = "";
+        if (user.getPassword().equals(oldPass) == false) {
+            err = "Old password is not correct";
+        } else {
+            String newPass = request.getParameter("newPassword");
+            String confirmNewPass = request.getParameter("confirmPassword");
+            if (newPass.equals(confirmNewPass)) {
+                dao.updatePasswordByUserId(user.getIdUser(), newPass);
+            } else {
+                err = "New password not same confirm new password";
+            }
+        }
+        if (!err.equals("")) {
+            request.setAttribute("errMess", err);
+            request.getRequestDispatcher("/root/display/employee/changePassword.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("createRequest");
+        }
     }
 
     /**
