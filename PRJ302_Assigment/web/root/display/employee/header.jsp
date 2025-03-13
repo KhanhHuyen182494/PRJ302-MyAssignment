@@ -16,7 +16,7 @@
 
                 <li class="nav-item"><a class="nav-link" href="historyRequest">History request</a></li>
                 <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="changePassaword">Change Password</a></li>
+                <li class="nav-item"><a class="nav-link" href="changePassword">Change Password</a></li>
                 <li class="nav-item"><a class="nav-link text-danger" href="logout">Logout</a></li>
             </ul>
         </div>

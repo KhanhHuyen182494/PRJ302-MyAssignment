@@ -155,4 +155,44 @@ public class UsersDao extends DBContext {
         }
     }
 
+    public void updateProfileByUserId(int idUser, String name, String phone, String address, String email, int divisionId, int management_id) {
+        String query = "UPDATE [dbo].[Users]\n"
+                + "   SET [name] = ?\n"
+                + "      ,[phone] = ?\n"
+                + "      ,[address] = ?\n"
+                + "      ,[email] = ?\n"
+                + "      ,[division_id] = ?\n"
+                + "      ,[manager_id] = ?\n"
+                + " WHERE Users.user_id = ?";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setString(2, phone);
+            ps.setString(3, address);
+            ps.setString(4, email);
+            ps.setInt(5, divisionId);
+            ps.setInt(6, management_id);
+            ps.setInt(7, idUser);
+            ps.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public void updatePasswordByUserId(int idUser, String newPass) {
+          String query = "UPDATE [dbo].[Users]\n"
+                + "   SET \n"
+                + "      [password] = ?\n"
+                + "      \n"
+                + " WHERE Users.user_id = ?";
+        try{
+            ps = connection.prepareStatement(query);
+            ps.setString(1, newPass);
+            ps.setInt(2, idUser);
+            ps.executeUpdate();
+        }catch(SQLException exception){
+            exception.printStackTrace();
+        }
+    }
+
 }

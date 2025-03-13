@@ -45,7 +45,7 @@
             <div class="container mt-4">
 
 
-                 <section id="history" class="mt-4">
+                <section id="history" class="mt-4">
                 <c:if test="${EmptyHistory != null}">
                     <p>${EmptyHistory}</p>
                 </c:if>
@@ -61,6 +61,7 @@
                                 <tr>
                                     <th>Form Id</th>
                                     <th>Details</th>
+                                    <th>Results</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,7 +97,7 @@
                 </div>
             </c:if> 
 
-                <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel"
+            <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
