@@ -68,4 +68,12 @@ public class RequisFormDAO extends DBContext {
         return forms;
     }
 
+    public List<RequisForm> getAllFormByIdUserAcceptForm(Integer idUser) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void updateRequisFormByFormId(int formId, int status) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
