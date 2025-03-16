@@ -3,7 +3,7 @@
     Created on : Mar 16, 2025, 8:37:36 PM
     Author     : admin
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,8 @@
             }
         </style>
     </head>
-      <body>
+   
+    <body>
 
         <jsp:include page="/root/display/employee/header.jsp"></jsp:include>
             <div class="container mt-4">
@@ -153,10 +154,10 @@
 
                 let formId = document.getElementById("formId").value; // Lấy formId từ modal
                 console.log(formId);
-
+                
 
                 $.ajax({
-                    url: '/Project/processRequest',
+                    url: '/PRJ302_Assigment/processRequest',
                     type: 'POST',
                     data: {//truyen id va status
                         formId: formId,
@@ -175,7 +176,7 @@
                 let formId = document.getElementById("formId").value; // Lấy formId từ modal
 
                 $.ajax({
-                    url: '/Project/processRequest',
+                    url: '/PRJ302_Assigment/processRequest',
                     type: 'POST',
                     data: {//truyen id va status
                         formId: formId,
@@ -196,4 +197,5 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
+
 </html>

@@ -8,6 +8,7 @@ import dao.RequisFormDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import model.Users;
  *
  * @author admin
  */
+@WebServlet("/PRJ302_Assigment/processRequest")
 public class ProcessRequest extends HttpServlet {
 
     /**
@@ -89,6 +91,7 @@ public class ProcessRequest extends HttpServlet {
         int status = Integer.parseInt(statusString);
         RequisFormDAO requisFormDAO = new RequisFormDAO();
         requisFormDAO.updateRequisFormByFormId(formId, status);
+        
     }
 
     /**

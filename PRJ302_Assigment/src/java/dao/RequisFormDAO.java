@@ -69,11 +69,36 @@ public class RequisFormDAO extends DBContext {
     }
 
     public List<RequisForm> getAllFormByIdUserAcceptForm(Integer idUser) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String query = "SELECT *\n"
+                + "  FROM [PRJ302].[dbo].[Requis_form]\n"
+                + "  Where user_id_accept_form = ? or user_id_accept_form is null";
+        List<RequisForm> forms = new ArrayList<>();
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, idUser);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                forms.add(new RequisForm(rs.getInt(1), rs.getDate(2), rs.getDate(3),
+                        rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getInt(7)));
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+        return forms;
     }
 
     public void updateRequisFormByFormId(int formId, int status) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String query = "UPDATE [dbo].[Requis_form]\n"
+                + "   SET [status] = ?\n"
+                + "     WHERE Requis_form.form_id = ? ";
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, status);
+            ps.setInt(2, formId);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

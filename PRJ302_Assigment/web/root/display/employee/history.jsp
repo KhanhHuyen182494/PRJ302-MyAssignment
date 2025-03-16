@@ -61,7 +61,6 @@
                                 <tr>
                                     <th>Form Id</th>
                                     <th>Details</th>
-                                    <th>Results</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,7 +78,6 @@
                                                 <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                         data-bs-target="#detailModal"
                                                         onclick="showDetail('${i.dateStart}', '${i.dateEnd}', '${i.issue}', 'Từ chối')">View</button>
-                                            <td class="text-danger">Từ chối</td>
                                         </c:if>
                                         <c:if test="${i.status == 0}">
                                     <button class="btn btn-info btn-sm" data-bs-toggle="modal"
