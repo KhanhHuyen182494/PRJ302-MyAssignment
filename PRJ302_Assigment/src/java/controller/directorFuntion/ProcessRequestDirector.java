@@ -39,7 +39,7 @@ public class ProcessRequestDirector extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProcessRequestDirector</title>");            
+            out.println("<title>Servlet ProcessRequestDirector</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ProcessRequestDirector at " + request.getContextPath() + "</h1>");
@@ -91,14 +91,12 @@ public class ProcessRequestDirector extends HttpServlet {
         HttpSession session = request.getSession();
         Users user = (Users) session.getAttribute("user");
 
-        // Ensure the user is a director before updating the status
         if (user != null && user.getRoleId() == 3) {
             RequisFormDAO requisFormDAO = new RequisFormDAO();
-            // Update the requisition form status using the director's ID
             requisFormDAO.updateRequisFormStatusByFormId(formId, status, user.getIdUser());
         }
 
-        response.sendRedirect("/processRequest"); // Redirect to processRequest to see updated status
+        response.sendRedirect("/processRequest");
     }
 
     /**

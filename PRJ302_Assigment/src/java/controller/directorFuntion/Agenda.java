@@ -10,14 +10,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.Users;
 
 /**
  *
  * @author admin
  */
-public class DirectorHome extends HttpServlet {
+public class Agenda extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +34,10 @@ public class DirectorHome extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DirectorHome</title>");
+            out.println("<title>Servlet Agenda</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DirectorHome at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Agenda at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,13 +55,7 @@ public class DirectorHome extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Users user = (Users) session.getAttribute("user");
-        if (user != null && user.getRoleId() == 3) { // Director's role ID is 3
-            request.getRequestDispatcher("/root/display/director/home.jsp").forward(request, response);
-        } else {
-            response.sendRedirect("/login");
-        }
+        request.getRequestDispatcher("/root/display/director/agenda.jsp").forward(request, response);
     }
 
     /**

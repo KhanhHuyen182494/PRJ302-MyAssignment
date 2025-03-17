@@ -41,31 +41,8 @@
 
         <jsp:include page="/root/display/director/header.jsp"></jsp:include>
             <div class="container mt-4">
-                <section id="createRequest">
-                    <h2>Create Leave Request</h2>
-                    <form action="createRequest" method="post">
-                        <div class="mb-3">
-                            <label class="form-label">Start Date</label>
-                            <input type="date" class="form-control" name="dateStart" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">End Date</label>
-                            <input type="date" class="form-control" name="dateEnd" required="">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Reason</label>
-                            <textarea class="form-control" name="issue" rows="3" required=""></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit Request</button>
-                    </form>
-                </section>
-                <c:if test="${ErrDate != null}">
-                <p style="color: red">${ErrDate}</p>
-            </c:if>
-            <c:if test="${CreateForm != null}">
-                <p style="color: green">${CreateForm}</p>
-            </c:if>
-        </div>
+                <h2>WELCOME TO HOME PAGE DIRECTOR</h2>    
+            </div>
 
         <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>

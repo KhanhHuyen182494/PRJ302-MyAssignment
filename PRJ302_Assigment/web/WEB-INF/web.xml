@@ -52,7 +52,10 @@
         <servlet-name>ProcessRequestDirector</servlet-name>
         <servlet-class>controller.directorFuntion.ProcessRequestDirector</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>Agenda</servlet-name>
+        <servlet-class>controller.directorFuntion.Agenda</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -101,5 +104,8 @@
         <servlet-name>ProcessRequestDirector</servlet-name>
         <url-pattern>/processRequestDirector</url-pattern>
     </servlet-mapping>
-  
+    <servlet-mapping>
+        <servlet-name>Agenda</servlet-name>
+        <url-pattern>/agenda</url-pattern>
+    </servlet-mapping>
 </web-app>

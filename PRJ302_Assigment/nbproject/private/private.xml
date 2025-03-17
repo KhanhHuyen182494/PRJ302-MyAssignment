@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/PRJ_sonnt/Assigment/PRJ302-MyAssignment/PRJ302_Assigment/web/WEB-INF/web.xml</file>
             <file>file:/D:/PRJ_sonnt/Assigment/PRJ302-MyAssignment/PRJ302_Assigment/web/root/display/director/profile.jsp</file>
-            <file>file:/D:/PRJ_sonnt/Assigment/PRJ302-MyAssignment/PRJ302_Assigment/web/root/display/director/header.jsp</file>
             <file>file:/D:/PRJ_sonnt/Assigment/PRJ302-MyAssignment/PRJ302_Assigment/src/java/controller/directorFuntion/ProcessRequestDirector.java</file>
             <file>file:/D:/PRJ_sonnt/Assigment/PRJ302-MyAssignment/PRJ302_Assigment/src/java/controller/directorFuntion/DirectorHome.java</file>
             <file>file:/D:/PRJ_sonnt/Assigment/PRJ302-MyAssignment/PRJ302_Assigment/src/java/controller/Login.java</file>
+            <file>file:/D:/PRJ_sonnt/Assigment/PRJ302-MyAssignment/PRJ302_Assigment/web/root/display/director/changePassword.jsp</file>
+            <file>file:/D:/PRJ_sonnt/Assigment/PRJ302-MyAssignment/PRJ302_Assigment/web/root/display/director/processRequest.jsp</file>
+            <file>file:/D:/PRJ_sonnt/Assigment/PRJ302-MyAssignment/PRJ302_Assigment/web/root/display/employee/profile.jsp</file>
         </group>
     </open-files>
 </project-private>

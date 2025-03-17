@@ -39,8 +39,16 @@
     <body>
         <h1>Pending Requests for Approval</h1>
 
-    <c:if test="${empty formsForDirector}">
-        <p>No requests pending for approval.</p>
+    <c:if test="${not empty listFormProcess}">
+    <ul>
+        <c:forEach var="form" items="${listFormProcess}">
+            <li>${form.formName}</li>
+        </c:forEach>
+    </ul>
+    </c:if>
+
+    <c:if test="${not empty EmptyListProcess}">
+        <p>${EmptyListProcess}</p>
     </c:if>
 
     <c:forEach var="form" items="${formsForDirector}">
@@ -50,7 +58,7 @@
             <p><strong>Issue:</strong> ${form.issue}</p>
             <p><strong>Status:</strong> ${form.status == 0 ? 'Pending' : form.status == 1 ? 'Approved' : 'Rejected'}</p>
 
-            <form action="approveRequest" method="POST">
+            <form action="processRequest" method="POST">
                 <input type="hidden" name="formId" value="${form.formId}">
                 <button type="submit" name="status" value="1">Approve</button>
                 <button type="submit" name="status" value="2">Reject</button>
