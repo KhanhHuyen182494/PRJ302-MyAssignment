@@ -23,8 +23,8 @@
                             <div class="card-body p-3 p-md-4 p-xl-5">
                                 <div class="text-center mb-3">
                                     <a href="#!">
-                                        <img src="https://th.bing.com/th/id/OIP.H7B2zQa6tyItU1JR6pPcngHaEE?rs=1&pid=ImgDetMain" alt="BootstrapBrain Logo" width="175" height="57">
-                                        
+                                        <img src="https://fpt.edu.vn/Content/images/assets/Logo-FU-03.png" alt="BootstrapBrain Logo" width="175" height="57">
+
                                     </a>
                                 </div>
                                 <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Sign in to your account</h2>

@@ -46,25 +46,25 @@
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="text" class="form-control" name="name" id="name" required>
-                                                <label for="name" class="form-label">name</label>
+                                                <label for="name" class="form-label">Name</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="tel" class="form-control" name="phone" id="phone" required>
-                                                <label for="phone" class="form-label">phone</label>
+                                                <label for="phone" class="form-label">Phone</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="text" class="form-control" name="address" id="address" required>
-                                                <label for="address" class="form-label">address</label>
+                                                <label for="address" class="form-label">Address</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
                                                 <input type="email" class="form-control" name="email" id="email" required>
-                                                <label for="email" class="form-label">email</label>
+                                                <label for="email" class="form-label">Email</label>
                                             </div>
                                         </div>
                                         <div class="col-12">

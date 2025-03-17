@@ -101,4 +101,39 @@ public class RequisFormDAO extends DBContext {
         }
     }
 
+    public List<RequisForm> getAllFormsForDirector(Integer idUser) {
+        String query = "SELECT *\n"
+                + "  FROM [PRJ302].[dbo].[Requis_form]\n"
+                + "  WHERE user_id_accept_form = ? OR user_id_accept_form is null ";
+        List<RequisForm> forms = new ArrayList<>();
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, idUser);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                forms.add(new RequisForm(rs.getInt(1), rs.getDate(2), rs.getDate(3),
+                        rs.getString(4), rs.getInt(5), rs.getInt(6), rs.getInt(7)));
+            }
+        } catch (SQLException exception) {
+            System.out.println(exception);
+        }
+        return forms;
+    }
+
+    public void updateRequisFormStatusByFormId(int formId, int status, Integer idUser) {
+        String query = "UPDATE [dbo].[Requis_form]\n"
+                + "   SET [status] = ?\n"
+                + " WHERE form_id = ? AND (user_id_accept_form = ? OR user_id_accept_form IS NULL)";
+
+        try {
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, status);
+            ps.setInt(2, formId);
+            ps.setInt(3, idUser); // Ensure that the director can update the status
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }

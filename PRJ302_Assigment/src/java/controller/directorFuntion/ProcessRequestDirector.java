@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.employeeFunction;
+package controller.directorFuntion;
 
 import dao.RequisFormDAO;
 import java.io.IOException;
@@ -12,11 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import model.RequisForm;
 import model.Users;
 
@@ -24,7 +20,7 @@ import model.Users;
  *
  * @author admin
  */
-public class CreateRequest extends HttpServlet {
+public class ProcessRequestDirector extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +39,10 @@ public class CreateRequest extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateRequest</title>");
+            out.println("<title>Servlet ProcessRequestDirector</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateRequest at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProcessRequestDirector at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,7 +60,16 @@ public class CreateRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
+        RequisFormDAO formDAO = new RequisFormDAO();
+        HttpSession session = request.getSession();
+        Users user = (Users) (session.getAttribute("user"));
+        List<RequisForm> list = formDAO.getAllFormsForDirector(user.getIdUser());
+        request.setAttribute("listFormProcess", list);
+        if (list.isEmpty()) {
+            request.setAttribute("EmptyListProcess", "Empty list process");
+        }
+
+        request.getRequestDispatcher("root/display/director/processRequest.jsp").forward(request, response);
     }
 
     /**
@@ -78,48 +83,26 @@ public class CreateRequest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    try {
+        String formIdString = request.getParameter("formId");
+        String statusString = request.getParameter("status");
+        int formId = Integer.parseInt(formIdString);
+        int status = Integer.parseInt(statusString);
 
-        Date dateStart = dateFormat.parse(request.getParameter("dateStart"));
-        Date dateEnd = dateFormat.parse(request.getParameter("dateEnd"));
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("user");
 
-        // Kiểm tra nếu ngày bắt đầu nhỏ hơn ngày hiện tại
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date currentDate = new Date();
-        String currentDateStr = sdf.format(currentDate);
-        currentDate = sdf.parse(currentDateStr);
-
-        if (dateStart.before(currentDate)) {
-            request.setAttribute("ErrDate", "Start date cannot be in the past.");
-            request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
-            return; // Dừng lại không tiếp tục xử lý
+        // Ensure the user is a director before updating the status
+        if (user != null && user.getRoleId() == 3) {
+            RequisFormDAO requisFormDAO = new RequisFormDAO();
+            // Update the requisition form status using the director's ID
+            requisFormDAO.updateRequisFormStatusByFormId(formId, status, user.getIdUser());
         }
 
-        if (dateStart.after(dateEnd)) {
-            request.setAttribute("ErrDate", "Date start must be before date end");
-            request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
-        } else {
-            String issue = request.getParameter("issue");
-            HttpSession session = request.getSession();
-            Users user = (Users) (session.getAttribute("user"));
-            RequisFormDAO formDAO = new RequisFormDAO();
-
-            if(formDAO.insertForm(dateStart, dateEnd, issue, 0, user.getIdUser(), user.getManagerId()) == true){
-                request.setAttribute("CreateForm", "Create form success!");
-            } else {
-                request.setAttribute("CreateForm", "Failed to create form. Please try again.");
-            }
-
-            request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
-        }
-    } catch (ParseException ex) {
-        System.out.println(ex);
-    }
+        response.sendRedirect("/processRequest"); // Redirect to processRequest to see updated status
     }
 
     /**
-     * Returns a short description of the servlet.SS
+     * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
      */
@@ -127,4 +110,5 @@ public class CreateRequest extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

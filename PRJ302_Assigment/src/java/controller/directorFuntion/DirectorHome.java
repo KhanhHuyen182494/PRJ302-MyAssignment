@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.employeeFunction;
+package controller.directorFuntion;
 
-import dao.RequisFormDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,19 +11,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.RequisForm;
 import model.Users;
 
 /**
  *
  * @author admin
  */
-public class CreateRequest extends HttpServlet {
+public class DirectorHome extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +36,10 @@ public class CreateRequest extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateRequest</title>");
+            out.println("<title>Servlet DirectorHome</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateRequest at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DirectorHome at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,7 +57,13 @@ public class CreateRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("user");
+        if (user != null && user.getRoleId() == 3) { // Director's role ID is 3
+            request.getRequestDispatcher("/root/display/director/home.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("/login");
+        }
     }
 
     /**
@@ -78,48 +77,11 @@ public class CreateRequest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    try {
-
-        Date dateStart = dateFormat.parse(request.getParameter("dateStart"));
-        Date dateEnd = dateFormat.parse(request.getParameter("dateEnd"));
-
-        // Kiểm tra nếu ngày bắt đầu nhỏ hơn ngày hiện tại
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date currentDate = new Date();
-        String currentDateStr = sdf.format(currentDate);
-        currentDate = sdf.parse(currentDateStr);
-
-        if (dateStart.before(currentDate)) {
-            request.setAttribute("ErrDate", "Start date cannot be in the past.");
-            request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
-            return; // Dừng lại không tiếp tục xử lý
-        }
-
-        if (dateStart.after(dateEnd)) {
-            request.setAttribute("ErrDate", "Date start must be before date end");
-            request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
-        } else {
-            String issue = request.getParameter("issue");
-            HttpSession session = request.getSession();
-            Users user = (Users) (session.getAttribute("user"));
-            RequisFormDAO formDAO = new RequisFormDAO();
-
-            if(formDAO.insertForm(dateStart, dateEnd, issue, 0, user.getIdUser(), user.getManagerId()) == true){
-                request.setAttribute("CreateForm", "Create form success!");
-            } else {
-                request.setAttribute("CreateForm", "Failed to create form. Please try again.");
-            }
-
-            request.getRequestDispatcher("root/display/employee/home.jsp").forward(request, response);
-        }
-    } catch (ParseException ex) {
-        System.out.println(ex);
-    }
+        processRequest(request, response);
     }
 
     /**
-     * Returns a short description of the servlet.SS
+     * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
      */
@@ -127,4 +89,5 @@ public class CreateRequest extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
