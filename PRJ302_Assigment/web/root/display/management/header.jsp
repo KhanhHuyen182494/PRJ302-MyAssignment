@@ -12,10 +12,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <c:if test="${sessionScope.user.roleId == 2}">
+            <ul class="navbar-nav ms-auto">              
                     <li class="nav-item"><a class="nav-link" href="processRequest">Process request</a></li>
-                    </c:if>
                 <li class="nav-item"><a class="nav-link" href="historyRequest">History request</a></li>
                 <li class="nav-item"><a class="nav-link" href="profile">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="changePassword">Change Password</a></li>
