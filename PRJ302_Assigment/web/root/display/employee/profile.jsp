@@ -45,7 +45,7 @@
             <div class="container mt-4">
 
                 <section id="profile" class="mt-4">
-                    <h2>Thông Tin Cá Nhân</h2>
+                    <h2>Personal Information</h2>
                     <form action="profile" method="post">
 
                         <label>UserID</label>

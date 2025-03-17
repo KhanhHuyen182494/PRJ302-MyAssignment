@@ -53,7 +53,7 @@
             <c:if test="${EmptyHistory == null}">
                 <div class="container mt-4">
                     <section id="history" class="section-container">
-                        <h2 class="text-success">Phê Duyệt Đơn</h2>
+                        <h2 class="text-success">Approve Leave Request</h2>
                         <table class="table table-bordered">
                             <thead class="table-dark">
                                 <tr>
@@ -70,19 +70,19 @@
                                     <c:if test="${i.status == 1}">
                                         <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#detailModal"
-                                                onclick="showDetail('${i.dateStart}', '${i.dateEnd}', '${i.issue}', 'Đã duyệt', '${i.formId}')">View</button>
+                                                onclick="showDetail('${i.dateStart}', '${i.dateEnd}', '${i.issue}', 'Approved', '${i.formId}')">View</button>
 
                                     </c:if>
                                     <c:if test="${i.status == -1}">
                                         <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#detailModal"
-                                                onclick="showDetail('${i.dateStart}', '${i.dateEnd}', '${i.issue}', 'Từ chối', '${i.formId}')">View</button>
+                                                onclick="showDetail('${i.dateStart}', '${i.dateEnd}', '${i.issue}', 'Rejected', '${i.formId}')">View</button>
 
                                     </c:if>
                                     <c:if test="${i.status == 0}">
                                         <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#detailModal"
-                                                onclick="showDetail('${i.dateStart}', '${i.dateEnd}', '${i.issue}', 'đang xử lý', '${i.formId}')">View</button>
+                                                onclick="showDetail('${i.dateStart}', '${i.dateEnd}', '${i.issue}', 'Processing', '${i.formId}')">View</button>
                                     </c:if>  
 
                                 </td>
@@ -101,18 +101,18 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="detailModalLabel">Chi Tiết Đơn Nghỉ</h5>
+                            <h5 class="modal-title" id="detailModalLabel">Leave Request Details</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p><strong>Ngày Bắt Đầu:</strong> <span id="startDate"></span></p>
-                            <p><strong>Ngày Kết Thúc:</strong> <span id="endDate"></span></p>
-                            <p><strong>Lý Do:</strong> <span id="reason"></span></p>
-                            <p><strong>Trạng Thái:</strong> <span id="status"></span></p>
+                            <p><strong>Start Date:</strong> <span id="startDate"></span></p>
+                            <p><strong>End Date:</strong> <span id="endDate"></span></p>
+                            <p><strong>Reason:</strong> <span id="reason"></span></p>
+                            <p><strong>Status:</strong> <span id="status"></span></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-danger" id="rejectBtn" style="display: none;" onclick="handleReject()">Reject</button>
                             <button type="button" class="btn btn-success" id="acceptBtn" style="display: none;" onclick="handleAccept()">Accept</button>
                         </div>
@@ -134,11 +134,11 @@
 
                 statusElement.innerText = status;
 
-                if (status == "Từ chối") {
+                if (status == "Rejected") {
                     statusElement.style.color = "red";
                     rejectBtn.style.display = "none";
                     acceptBtn.style.display = "none";
-                } else if (status == "đang xử lý") {
+                } else if (status == "Processing") {
                     statusElement.style.color = "#fbd301";
                     rejectBtn.style.display = "inline-block";
                     acceptBtn.style.display = "inline-block";

@@ -45,22 +45,22 @@
 
             
                 <section id="changePassword" class="mt-4">
-                    <h2>Đổi Mật Khẩu</h2>
+                    <h2>Change Password</h2>
                     <form action="changePassword" method="post">
                         <div class="mb-3">
-                            <label class="form-label">Mật Khẩu Hiện Tại</label>
+                            <label class="form-label">Current Password</label>
                             <input type="password" name="oldPassword" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Mật Khẩu Mới</label>
+                            <label class="form-label">New Password</label>
                             <input type="password" name="newPassword" class="form-control">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Nhâp lại Mật Khẩu Mới</label>
+                            <label class="form-label">Confirm New Password</label>
                             <input type="password" name="confirmPassword" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-warning">Cập Nhật</button>
+                        <button type="submit" class="btn btn-warning">Update</button>
                     </form>
                 </section>
             </div>

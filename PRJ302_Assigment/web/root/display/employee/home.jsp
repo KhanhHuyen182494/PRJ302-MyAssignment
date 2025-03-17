@@ -43,21 +43,21 @@
         <jsp:include page="/root/display/employee/header.jsp"></jsp:include>
             <div class="container mt-4">
                 <section id="createRequest">
-                    <h2>Tạo Đơn Nghỉ Phép</h2>
+                    <h2>Create Leave Request</h2>
                     <form action="createRequest" method="post">
                         <div class="mb-3">
-                            <label class="form-label">Ngày Bắt Đầu</label>
+                            <label class="form-label">Start Date</label>
                             <input type="date" class="form-control" name="dateStart" required="">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Ngày Kết Thúc</label>
+                            <label class="form-label">End Date</label>
                             <input type="date" class="form-control" name="dateEnd" required="">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Lý Do</label>
+                            <label class="form-label">Reason</label>
                             <textarea class="form-control" name="issue" rows="3" required=""></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Gửi Đơn</button>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
                     </form>
                 </section>
                 <c:if test="${ErrDate != null}">
