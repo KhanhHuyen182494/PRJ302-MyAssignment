@@ -43,7 +43,7 @@
         <div class="container mt-4">
 
             
-                <section id="changePassword" class="mt-4">
+                <section id="changePassDirector" class="mt-4">
                     <h2>Change Password</h2>
                     <form action="changePassword" method="post">
                         <div class="mb-3">

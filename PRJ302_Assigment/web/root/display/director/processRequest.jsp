@@ -58,7 +58,7 @@
             <p><strong>Issue:</strong> ${form.issue}</p>
             <p><strong>Status:</strong> ${form.status == 0 ? 'Pending' : form.status == 1 ? 'Approved' : 'Rejected'}</p>
 
-            <form action="processRequest" method="POST">
+            <form action="processRequestDirector" method="POST">
                 <input type="hidden" name="formId" value="${form.formId}">
                 <button type="submit" name="status" value="1">Approve</button>
                 <button type="submit" name="status" value="2">Reject</button>

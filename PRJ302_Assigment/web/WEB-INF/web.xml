@@ -56,6 +56,14 @@
         <servlet-name>Agenda</servlet-name>
         <servlet-class>controller.directorFuntion.Agenda</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfileDirector</servlet-name>
+        <servlet-class>controller.directorFuntion.ProfileDirector</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePassDirector</servlet-name>
+        <servlet-class>controller.directorFuntion.ChangePassDirector</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -107,5 +115,13 @@
     <servlet-mapping>
         <servlet-name>Agenda</servlet-name>
         <url-pattern>/agenda</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileDirector</servlet-name>
+        <url-pattern>/profileDirector</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassDirector</servlet-name>
+        <url-pattern>/changePassDirector</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -57,7 +57,7 @@
             </style>
 
             <section id="agenda" class="section-container">
-                <h2 class="text-primary">Agenda</h2>
+                <h2 class="text-primary">Human Resources</h2>
                 <table class="table table-bordered agenda-table">
                     <thead>
                         <tr>

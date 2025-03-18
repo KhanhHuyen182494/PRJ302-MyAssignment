@@ -39,7 +39,7 @@
     <body>
     <h1>Edit Profile</h1>
     
-    <form action="profile" method="POST">
+    <form action="profileDirector" method="POST">
         <div>
             <label for="Name">Name:</label>
             <input type="text" name="Name" value="${userI.name}" required>

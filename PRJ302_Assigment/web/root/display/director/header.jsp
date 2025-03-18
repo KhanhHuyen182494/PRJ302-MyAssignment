@@ -13,10 +13,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <!-- Hide Leave Request and History Request for the Director (roleId == 3) -->
-               
                 
-                <!-- Show Process Request for Management (roleId == 2) -->
                 
                     <li class="nav-item"><a class="nav-link" href="processRequest">Process Request</a></li>
                      <!-- Links accessible for all roles (Profile, Change Password, Logout) -->
