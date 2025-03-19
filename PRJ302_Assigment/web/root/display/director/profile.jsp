@@ -37,39 +37,45 @@
         </style>
     </head>
     <body>
-    <h1>Edit Profile</h1>
-    
-    <form action="profileDirector" method="POST">
-        <div>
-            <label for="Name">Name:</label>
-            <input type="text" name="Name" value="${userI.name}" required>
-        </div>
-        <div>
-            <label for="Phone">Phone:</label>
-            <input type="text" name="Phone" value="${userI.phone}" required>
-        </div>
-        <div>
-            <label for="Adress">Address:</label>
-            <input type="text" name="Adress" value="${userI.address}" required>
-        </div>
-        <div>
-            <label for="Email">Email:</label>
-            <input type="email" name="Email" value="${userI.email}" required>
-        </div>
-        <div>
-            <label for="divisionId">Division:</label>
-            <select name="divisionId">
-                <c:forEach var="division" items="${listDivision}">
-                    <option value="${division.divisionId}" 
-                            <c:if test="${division.divisionId == userI.divisionId}">selected</c:if>>
-                        ${division.divisionName}
-                    </option>
-                </c:forEach>
-            </select>
-        </div>
-        <button type="submit">Save Changes</button>
-    </form>
 
-    <a href="home">Back to Home</a>
-</body>
+        <jsp:include page="/root/display/employee/header.jsp"></jsp:include>
+            <div class="container mt-4">
+
+                <section id="profileDirector" class="mt-4">
+                    <h2>Personal Information</h2>
+                    <form action="profile" method="post">
+
+                        <label>UserID</label>
+                        <input type="number" name="UserID" value="${userI.idUser}" readonly=""/><br/><br/>
+                    <label>UserName</label>
+                    <input type="text" name="UserName" value="${userI.userName}" required=""/><br/><br/>
+                    <label>Name</label>
+                    <input type="text" name="Name" value="${userI.name}"/><br/><br/>
+                    <label>Phone</label>
+                    <input type="tel" name="Phone" value="${userI.phone}"/><br/><br/>
+                    <label>Address</label>
+                    <input type="text" name="Adress" value="${userI.address}"/><br/><br/>
+                    <label>Email</label>
+                    <input type="email" name="Email" value="${userI.email}"/><br/><br/>
+
+                    <c:if test="${sessionScope.user.roleId == 3}">
+                        <select name="divisionId">
+                            <c:forEach items="${listDivision}" var="item">
+                                <option value="${item.divisionId}" ${userI.divisionId == item.divisionId?"selected":""}>${item.divisionName}</option>                         
+                            </c:forEach>
+                        </select><br/><br/>
+                    </c:if>
+
+
+                    <!--                    <label>Division Name</label>
+                  
+                </form>
+
+            </section>
+
+
+        </div>
+
+        <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>

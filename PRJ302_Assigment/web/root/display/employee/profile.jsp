@@ -51,7 +51,7 @@
                         <label>UserID</label>
                         <input type="number" name="UserID" value="${userI.idUser}" readonly=""/><br/><br/>
                     <label>UserName</label>
-                    <input type="text" name="UserName" value="${userI.userName}"/><br/><br/>
+                    <input type="text" name="UserName" value="${userI.userName}" required=""/><br/><br/>
                     <label>Name</label>
                     <input type="text" name="Name" value="${userI.name}"/><br/><br/>
                     <label>Phone</label>
